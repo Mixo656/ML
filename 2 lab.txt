@@ -1,0 +1,23 @@
+﻿# [CODE]
+!pip install pandas seaborn matplotlib scikit-learn
+
+# [CODE]
+import pandas as pd
+import seaborn as sn
+import matplotlib as plt
+from sklearn.datasets import fetch_california_housing
+housing = fetch_california_housing(as_frame=True)
+df = housing.frame
+matrix = df.corr()
+print(matrix)
+sn.heatmap(matrix,cmap = "coolwarm", annot=True)
+print(housing.feature_names)
+sn.pairplot(df,vars=["AveRooms", "AveBedrms"])
+sn.pairplot(df,vars=["Longitude", "Latitude"])
+sn.pairplot(df,vars=["Longitude", "AveOccup"])
+sn.pairplot(df,vars=["MedInc", "AveRooms"])
+sn.pairplot(df)
+
+# [CODE]
+
+

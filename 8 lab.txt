@@ -1,0 +1,49 @@
+﻿# [CODE]
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.metrics import ConfusionMatrixDisplay, accuracy_score, confusion_matrix
+
+# Load Iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target_names[iris.target]   # Convert to string labels
+
+# Split into train and test
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Train Decision Tree
+clf = DecisionTreeClassifier(random_state=42)
+clf.fit(X_train, y_train)
+
+# Predictions
+y_pred = clf.predict(X_test)
+
+# Evaluation
+cm = confusion_matrix(y_test, y_pred)
+acc = accuracy_score(y_test, y_pred)
+
+print(f'Accuracy: {acc:.4f}')
+
+# Confusion Matrix
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=clf.classes_)
+disp.plot(cmap='Blues')
+plt.title('Confusion Matrix - Decision Tree (Iris)')
+plt.show()
+
+# Plot Decision Tree
+plt.figure(figsize=(12, 8))
+plot_tree(clf, 
+          feature_names=iris.feature_names,
+          class_names=iris.target_names,
+          filled=True, 
+          rounded=True)
+plt.title('Decision Tree - Iris Dataset')
+plt.show()
+
+# [CODE]
+
+

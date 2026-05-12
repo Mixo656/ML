@@ -1,0 +1,25 @@
+﻿# [CODE]
+import numpy as np
+import pandas as pd
+import seaborn as sn
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+from sklearn.datasets import load_iris
+iris_bunch = load_iris(as_frame=True)
+iris_df = iris_bunch.frame
+iris_df = iris_df.drop('target', axis=1) #axis= 1 for column, 0 for row
+print(iris_df.head(5)) #output
+iris_scaled = StandardScaler().fit_transform(iris_df)
+pca = PCA(n_components=2)
+iris_pca = pca.fit_transform(iris_scaled)
+explained_variance = pca.explained_variance_ratio_
+print(f"Explained variance ratio: {explained_variance}")
+pca_df = pd.DataFrame(data = iris_pca, columns = ['PC1', 'PC2'])
+final_df = pd.concat([pca_df, iris_bunch.target], axis = 1)
+final_df["target"] = iris_bunch.target_names[iris_bunch.target]
+print(final_df.head(5))#output
+sn.pairplot(final_df, hue= "target", diag_kind='kde')
+
+# [CODE]
+
+
