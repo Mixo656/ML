@@ -51,6 +51,6 @@ file_path = 'training_data.csv'
 hypothesis = find_s_algorithm(file_path)
 print("\nThe final hypothesis is:", hypothesis)
 
-# [CODE]
+
 
 
