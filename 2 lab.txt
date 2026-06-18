@@ -1,7 +1,6 @@
-﻿# [CODE]
-!pip install pandas seaborn matplotlib scikit-learn
+﻿
 
-# [CODE]
+
 import pandas as pd
 import seaborn as sn
 import matplotlib as plt
@@ -18,6 +17,6 @@ sn.pairplot(df,vars=["Longitude", "AveOccup"])
 sn.pairplot(df,vars=["MedInc", "AveRooms"])
 sn.pairplot(df)
 
-# [CODE]
+
 
 
