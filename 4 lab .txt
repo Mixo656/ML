@@ -23,6 +23,31 @@ print(f'\nFinal Specific Hypothesis: {sp_h}')
 
 
 
+#Code
 
+import pandas as pd
+import numpy as np
+
+data = pd.DataFrame({
+    'Color': ['Green', 'Orange', 'Green', 'Green'],
+    'Texture': ['Hard', 'Hard', 'Soft', 'Hard'],
+    'Label': ['Yes', 'No', 'Yes', 'Yes']
+})
+
+print(data)
+
+hypothesis = ['Ø'] * (data.shape[1] - 1)
+
+print(hypothesis)
+
+for i in range(len(data)):
+    if data.loc[i, 'Label'] == 'Yes':
+        for j in range(len(hypothesis)):
+            if hypothesis[j] == 'Ø':
+                hypothesis[j] = data.iloc[i, j]
+            elif hypothesis[j] != data.iloc[i, j]:
+                hypothesis[j] = '?'
+
+print("Final Hypothesis:", hypothesis)
 
 
